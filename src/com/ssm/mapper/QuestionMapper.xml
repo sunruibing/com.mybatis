@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.QuestionMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.Question">
+    <id column="qusId" jdbcType="CHAR" property="qusid" />
+    <result column="qusType" jdbcType="INTEGER" property="qustype" />
+    <result column="qusText" jdbcType="VARCHAR" property="qustext" />
+    <result column="qusVoice" jdbcType="VARCHAR" property="qusvoice" />
+    <result column="qusImage" jdbcType="VARCHAR" property="qusimage" />
+    <result column="qusPrice" jdbcType="DECIMAL" property="qusprice" />
+    <result column="statusImg" jdbcType="VARCHAR" property="statusimg" />
+    <result column="qusSubTime" jdbcType="TIMESTAMP" property="qussubtime" />
+    <result column="qusEndTime" jdbcType="TIMESTAMP" property="qusendtime" />
+    <result column="openid" jdbcType="CHAR" property="openid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    qusId, qusType, qusText, qusVoice, qusImage, qusPrice, statusImg, qusSubTime, qusEndTime, 
+    openid
+  </sql>
+  <select id="selectByExample" parameterType="com.ssm.pojo.QuestionExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where qusId = #{qusid,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from question
+    where qusId = #{qusid,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.pojo.QuestionExample">
+    delete from question
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.Question">
+    insert into question (qusId, qusType, qusText, 
+      qusVoice, qusImage, qusPrice, 
+      statusImg, qusSubTime, qusEndTime, 
+      openid)
+    values (#{qusid,jdbcType=CHAR}, #{qustype,jdbcType=INTEGER}, #{qustext,jdbcType=VARCHAR}, 
+      #{qusvoice,jdbcType=VARCHAR}, #{qusimage,jdbcType=VARCHAR}, #{qusprice,jdbcType=DECIMAL}, 
+      #{statusimg,jdbcType=VARCHAR}, #{qussubtime,jdbcType=TIMESTAMP}, #{qusendtime,jdbcType=TIMESTAMP}, 
+      #{openid,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.Question">
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="qusid != null">
+        qusId,
+      </if>
+      <if test="qustype != null">
+        qusType,
+      </if>
+      <if test="qustext != null">
+        qusText,
+      </if>
+      <if test="qusvoice != null">
+        qusVoice,
+      </if>
+      <if test="qusimage != null">
+        qusImage,
+      </if>
+      <if test="qusprice != null">
+        qusPrice,
+      </if>
+      <if test="statusimg != null">
+        statusImg,
+      </if>
+      <if test="qussubtime != null">
+        qusSubTime,
+      </if>
+      <if test="qusendtime != null">
+        qusEndTime,
+      </if>
+      <if test="openid != null">
+        openid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="qusid != null">
+        #{qusid,jdbcType=CHAR},
+      </if>
+      <if test="qustype != null">
+        #{qustype,jdbcType=INTEGER},
+      </if>
+      <if test="qustext != null">
+        #{qustext,jdbcType=VARCHAR},
+      </if>
+      <if test="qusvoice != null">
+        #{qusvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="qusimage != null">
+        #{qusimage,jdbcType=VARCHAR},
+      </if>
+      <if test="qusprice != null">
+        #{qusprice,jdbcType=DECIMAL},
+      </if>
+      <if test="statusimg != null">
+        #{statusimg,jdbcType=VARCHAR},
+      </if>
+      <if test="qussubtime != null">
+        #{qussubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qusendtime != null">
+        #{qusendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openid != null">
+        #{openid,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.pojo.QuestionExample" resultType="java.lang.Long">
+    select count(*) from question
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update question
+    <set>
+      <if test="record.qusid != null">
+        qusId = #{record.qusid,jdbcType=CHAR},
+      </if>
+      <if test="record.qustype != null">
+        qusType = #{record.qustype,jdbcType=INTEGER},
+      </if>
+      <if test="record.qustext != null">
+        qusText = #{record.qustext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qusvoice != null">
+        qusVoice = #{record.qusvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qusimage != null">
+        qusImage = #{record.qusimage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qusprice != null">
+        qusPrice = #{record.qusprice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.statusimg != null">
+        statusImg = #{record.statusimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qussubtime != null">
+        qusSubTime = #{record.qussubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qusendtime != null">
+        qusEndTime = #{record.qusendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.openid != null">
+        openid = #{record.openid,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update question
+    set qusId = #{record.qusid,jdbcType=CHAR},
+      qusType = #{record.qustype,jdbcType=INTEGER},
+      qusText = #{record.qustext,jdbcType=VARCHAR},
+      qusVoice = #{record.qusvoice,jdbcType=VARCHAR},
+      qusImage = #{record.qusimage,jdbcType=VARCHAR},
+      qusPrice = #{record.qusprice,jdbcType=DECIMAL},
+      statusImg = #{record.statusimg,jdbcType=VARCHAR},
+      qusSubTime = #{record.qussubtime,jdbcType=TIMESTAMP},
+      qusEndTime = #{record.qusendtime,jdbcType=TIMESTAMP},
+      openid = #{record.openid,jdbcType=CHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.Question">
+    update question
+    <set>
+      <if test="qustype != null">
+        qusType = #{qustype,jdbcType=INTEGER},
+      </if>
+      <if test="qustext != null">
+        qusText = #{qustext,jdbcType=VARCHAR},
+      </if>
+      <if test="qusvoice != null">
+        qusVoice = #{qusvoice,jdbcType=VARCHAR},
+      </if>
+      <if test="qusimage != null">
+        qusImage = #{qusimage,jdbcType=VARCHAR},
+      </if>
+      <if test="qusprice != null">
+        qusPrice = #{qusprice,jdbcType=DECIMAL},
+      </if>
+      <if test="statusimg != null">
+        statusImg = #{statusimg,jdbcType=VARCHAR},
+      </if>
+      <if test="qussubtime != null">
+        qusSubTime = #{qussubtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qusendtime != null">
+        qusEndTime = #{qusendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="openid != null">
+        openid = #{openid,jdbcType=CHAR},
+      </if>
+    </set>
+    where qusId = #{qusid,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.Question">
+    update question
+    set qusType = #{qustype,jdbcType=INTEGER},
+      qusText = #{qustext,jdbcType=VARCHAR},
+      qusVoice = #{qusvoice,jdbcType=VARCHAR},
+      qusImage = #{qusimage,jdbcType=VARCHAR},
+      qusPrice = #{qusprice,jdbcType=DECIMAL},
+      statusImg = #{statusimg,jdbcType=VARCHAR},
+      qusSubTime = #{qussubtime,jdbcType=TIMESTAMP},
+      qusEndTime = #{qusendtime,jdbcType=TIMESTAMP},
+      openid = #{openid,jdbcType=CHAR}
+    where qusId = #{qusid,jdbcType=CHAR}
+  </update>
+</mapper>
