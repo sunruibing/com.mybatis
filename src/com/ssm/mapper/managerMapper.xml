@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.dao.managerMapper">
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.manager">
+    <id column="managerId" jdbcType="INTEGER" property="managerid" />
+    <result column="managerName" jdbcType="VARCHAR" property="managername" />
+    <result column="managerPassword" jdbcType="VARCHAR" property="managerpassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    managerId, managerName, managerPassword
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.manager">
+    insert into manager (managerId, managerName, managerPassword
+      )
+    values (#{managerid,jdbcType=INTEGER}, #{managername,jdbcType=VARCHAR}, #{managerpassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        managerId,
+      </if>
+      <if test="managername != null">
+        managerName,
+      </if>
+      <if test="managerpassword != null">
+        managerPassword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="managername != null">
+        #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="managerpassword != null">
+        #{managerpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.manager">
+    update manager
+    <set>
+      <if test="managername != null">
+        managerName = #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="managerpassword != null">
+        managerPassword = #{managerpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.manager">
+    update manager
+    set managerName = #{managername,jdbcType=VARCHAR},
+      managerPassword = #{managerpassword,jdbcType=VARCHAR}
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.manager">
+    <id column="managerId" jdbcType="INTEGER" property="managerid" />
+    <result column="managerName" jdbcType="VARCHAR" property="managername" />
+    <result column="managerPassword" jdbcType="VARCHAR" property="managerpassword" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    managerId, managerName, managerPassword
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from manager
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.manager">
+    insert into manager (managerId, managerName, managerPassword
+      )
+    values (#{managerid,jdbcType=INTEGER}, #{managername,jdbcType=VARCHAR}, #{managerpassword,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        managerId,
+      </if>
+      <if test="managername != null">
+        managerName,
+      </if>
+      <if test="managerpassword != null">
+        managerPassword,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="managerid != null">
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="managername != null">
+        #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="managerpassword != null">
+        #{managerpassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.manager">
+    update manager
+    <set>
+      <if test="managername != null">
+        managerName = #{managername,jdbcType=VARCHAR},
+      </if>
+      <if test="managerpassword != null">
+        managerPassword = #{managerpassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.manager">
+    update manager
+    set managerName = #{managername,jdbcType=VARCHAR},
+      managerPassword = #{managerpassword,jdbcType=VARCHAR}
+    where managerId = #{managerid,jdbcType=INTEGER}
+  </update>
+</mapper>

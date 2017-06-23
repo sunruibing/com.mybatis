@@ -14,7 +14,7 @@ public class GeneratorSqlmap {
 
 		List<String> warnings = new ArrayList<String>();
 		boolean overwrite = true;
-		// 指向逆向工程配置文件
+		// 鎸囧悜閫嗗悜宸ョ▼閰嶇疆鏂囦欢
 		File configFile = new File("generatorConfig.xml");
 		ConfigurationParser cp = new ConfigurationParser(warnings);
 		Configuration config = cp.parseConfiguration(configFile);
@@ -29,7 +29,7 @@ public class GeneratorSqlmap {
 		try {
 			GeneratorSqlmap generatorSqlmap = new GeneratorSqlmap();
 			generatorSqlmap.generator();
-			System.out.println("生产完成");
+			System.out.println("鎵ц瀹屾垚");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
